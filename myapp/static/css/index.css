@@ -1,0 +1,66 @@
+.header{
+	background-color:#e8e8e8 ;
+	/*border:1px red solid;*/
+	border-bottom: 1px #bcbcbc solid;
+	height:10%;
+	position:fixed;
+}
+
+.middle{
+	margin-top:15px;
+	padding-top: 5px;
+}
+
+.logo{
+	float:left;
+	height:35px;
+	margin:0px;
+	padding:0px;
+}
+
+.login{
+	margin-right:10px;
+	float:right;
+}
+
+.share{
+	float:right;
+}
+
+.user-pic{
+	margin-right:10px;
+	margin-left:10px;
+	float:right;
+}
+
+span:hover{
+	background-color:white;
+	transition-delay:1s;
+}
+
+.input-mysize {
+	margin: 0px;
+	margin-left:18%;
+	float:left;
+	width: 350px; 
+}
+
+.search-size{
+	font-size: 16px;
+}
+
+
+#main-container{
+	margin-top:6%;
+}
+
+.block{
+	padding:5px;
+	height:100%;
+}
+
+.container-post{
+	padding:10px;
+	border:1px #dbdbdb solid;
+	margin:10px;
+}
