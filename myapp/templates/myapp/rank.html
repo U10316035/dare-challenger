@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>首頁</title>
+    <title>風雲榜</title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no"/>
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/camera.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/rank.css' %}"/>
     
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/jquery-migrate-1.2.1.js' %}"></script>
@@ -44,21 +44,20 @@
                 <div class="grid_12">
                     <div class="brand put-left">
                         <h1>
-                            <a href="index">
+                            <a href="index.html">
                                 <img src="{% static 'images/logo.png' %}" alt="Logo"/>
                             </a>
                         </h1>
                     </div>
                     <nav class="nav put-right">
                         <ul class="sf-menu">
-                            <li class="current"><a href="index">首頁</a></li>
-                            <li><a href="videoForChallenge">發燒影片</a></li>
+                            <li><a href="index">首頁</a></li>
+                            <li ><a href="videoForChallenge">發燒影片</a></li>
                             <li><a href="bulletinboard">最新挑戰</a></li>
-                            <li><a href="rank">風雲榜</a></li>
-
+                            <li class="current"><a href="rank">風雲榜</a></li>
                             {% if request.user.is_authenticated %}
                             <li class="current"><br><img class="circular--portrait" src="{% static 'images/head.png' %}" >
-                            <h3>{{ request.user }}</h3>
+                            <h3>{{ user.get_username }}</h3>
                                 <ul>
                                     <li><a href="makeChallenge">建立新挑戰</a></li>
                                     <li><a href="challenge">挑戰</a></li>
@@ -80,31 +79,155 @@
                           CONTENT
 =========================================================-->
 <section id="content">
-<div class="container">
-<br>
-</div>
-<div class="slider">
-      <div class="arrows">
-        <a class="previous" href="#"><img src="{% static 'images/arrow1.png' %}"></a>
-        <a class="next" href="#"><img src="{% static 'images/arrow2.png' %}"></a>
-      </div>
-      <div class="slides">
-            <div class="slide active white" >
-                <h2>{{ cc.title }}</h2>
-                <p>{{ cc.detail }}</p>
-                <a href="detailPublicChallenge&{{ cc.username }}&{{ cc.urlnum }}">更多資訊</a>
-            </div>
 
-            {% for c in ch %}
-            <div class="slide white" >
-                <h2>{{ c.title }}</h2>
-                <p>{{ c.detail }}</p>
-                <a  href="detailPublicChallenge&{{ c.username }}&{{ c.urlnum }}">更多資訊</a>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="bullets">
-        </div>
+<div class="container">
+    <br>
+</div>
+
+
+<div class="container">
+<div class="wrapper1">
+  <div class="table1">
+    
+    <div class="row1 header green">
+      <div class="cell1">
+        排名
+      </div>
+      <div class="cell2">
+        挑戰者(ID)
+      </div>
+      <div class="cell3">
+        積分
+      </div>
+    </div>
+    
+    <div class="row1">
+      <div class="cell1">
+        #1
+      </div>
+      <div class="cell2">
+        等雨說放棄
+      </div>
+      <div class="cell3">
+        999
+      </div>
+    </div>
+
+    <div class="row1">
+      <div class="cell1">
+        #2
+      </div>
+      <div class="cell2">
+        正咩會長
+      </div>
+      <div class="cell3">
+        777
+      </div>
+    </div>
+    
+    <div class="row1">
+      <div class="cell1">
+        #3
+      </div>
+      <div class="cell2">
+        情歌王子-阿謙
+      </div>
+      <div class="cell3">
+        579
+      </div>
+    </div>
+    
+    <div class="row1">
+      <div class="cell1">
+        #4
+      </div>
+      <div class="cell2">
+        豪神
+      </div>
+      <div class="cell3">
+        500
+      </div>
+    </div>
+
+    <div class="row1">
+      <div class="cell1">
+        #5
+      </div>
+      <div class="cell2">
+        堯堯
+      </div>
+      <div class="cell3">
+        467
+      </div>
+    </div>
+
+    <div class="row1">
+      <div class="cell1">
+        #6
+      </div>
+      <div class="cell2">
+        資科強森
+      </div>
+      <div class="cell3">
+        397
+      </div>
+    </div>
+
+    <div class="row1">
+      <div class="cell1">
+        #7
+      </div>
+      <div class="cell2">
+        東移移東
+      </div>
+      <div class="cell3">
+        278
+      </div>
+    </div>
+
+    <div class="row1">
+      <div class="cell1">
+        #8
+      </div>
+      <div class="cell2">
+        滑板鞋摩擦摩擦最時尚
+      </div>
+      <div class="cell3">
+        177
+      </div>
+    </div>
+
+    <div class="row1">
+      <div class="cell1">
+        #9
+      </div>
+      <div class="cell2">
+        YHF狼少年
+      </div>
+      <div class="cell3">
+        123
+      </div>
+    </div>
+      
+      <div class="row1">
+      <div class="cell1">
+        #10
+      </div>
+      <div class="cell2">
+        丁丁
+      </div>
+      <div class="cell3">
+        87
+      </div>
+    </div>
+
+
+    </div>
+    
+  </div>
+  
+  
+</div>
 </div>
 
 <!--Login-->
@@ -115,15 +238,6 @@
     </div>    
 </div>
 
-<div class="container">
-    <div class="row wrap_9 wrap_4 wrap_10">
-        <div class="grid_12">
-            <div class="header_1 wrap_3 color_3">
-                更多挑戰，等你創造/發掘
-            </div>
-        </div>
-    </div>
-</div>
 </section>
 </div>
 <!--========================================================
@@ -141,73 +255,7 @@
         </div>
     </div>
 </footer>
-
 <script src="{% static 'js/script.js' %}"></script>
-<script>
-var $slider = $(".slider"), $bullets = $(".bullets");
-        function calculateHeight(){
-            var height = $(".slide.active").outerHeight();
-            $slider.height(height);
-        }
 
-        $(window).resize(function() {
-            calculateHeight();
-            clearTimeout($.data(this, 'resizeTimer'));
-        });
-        
-        function resetSlides(){
-            $(".slide.inactive").removeClass("inactiveRight").removeClass("inactiveLeft");
-        }
-
-        function gotoSlide($activeSlide, $slide, className){
-             $activeSlide.removeClass("active").addClass("inactive "+className);
-             $slide.removeClass("inactive").addClass("active");
-             calculateHeight();
-             resetBullets();
-             setTimeout(resetSlides, 300);
-        }
-
-        $(".next").on("click", function(){
-             var $activeSlide = $(".slide.active"),
-                 $nextSlide = $activeSlide.next(".slide").length != 0 ? $activeSlide.next(".slide") : $(".slide:first-child");
-                 console.log($nextSlide);
-                 gotoSlide($activeSlide, $nextSlide, "inactiveLeft");
-        });
-        $(".previous").on("click",  function(){
-             var $activeSlide = $(".slide.active"),
-                 $prevSlide = $activeSlide.prev(".slide").length != 0 ? $activeSlide.prev(".slide") : $(".slide:last-child");
-
-                 gotoSlide($activeSlide, $prevSlide, "inactiveRight");
-        });
-        $(document).on("click", ".bullet", function(){
-            if($(this).hasClass("active")){
-                return;
-            }
-            var $activeSlide = $(".slide.active");
-            var currentIndex = $activeSlide.index();
-            var targetIndex = $(this).index();
-            console.log(currentIndex, targetIndex);
-            var $theSlide = $(".slide:nth-child("+(targetIndex+1)+")");
-            gotoSlide($activeSlide, $theSlide, currentIndex > targetIndex ? "inactiveRight" : "inactiveLeft");
-        })
-        function addBullets(){
-            var total = $(".slide").length, index = $(".slide.active").index();
-            for (var i=0; i < total; i++){
-                var $bullet = $("<div>").addClass("bullet");
-                if(i==index){
-                    $bullet.addClass("active"); 
-                }
-                $bullets.append($bullet);
-            }
-        }
-        function resetBullets(){
-            $(".bullet.active").removeClass("active");
-            var index = $(".slide.active").index()+1;
-            console.log(index);
-            $(".bullet:nth-child("+index+")").addClass("active");
-        }
-        addBullets();
-        calculateHeight();
-</script>  
 </body>
 </html>

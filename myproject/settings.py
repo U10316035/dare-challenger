@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # 'django_extensions',
     # Disable Django's own staticfiles handling in favour of WhiteNoise, for
     # greater consistency between gunicorn and `./manage.py runserver`. See:
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
@@ -101,11 +102,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#AUTH_PROFILE_MODULE='myapp.UserData'
+#AUTH_USER_MODEL='myapp.UserData'
+#AUTHENTICATION_BACKENDS=(
+#    'myapp.mybackend.MyBackend',
+ #   'django.contrib.auth.backends.ModelBackend',
+#)
+
+#AUTHENTICATION_BACKENDS=(
+ #   'django.contrib.auth.backends.ModelBackend',
+  #  )
+#AUTH_USER_MODLE = 'django.contrib.auth.models.User'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True

@@ -16,14 +16,29 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from myapp import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
 	url(r'^$', views.index),
     url(r'^admin/', admin.site.urls),
-    url(r'^bulletinboard.html', views.bulletinboard),
-    url(r'^index.html', views.index),
-    url(r'^challenge.html', views.challenge),
-    url(r'^about.html', views.about),
-    url(r'^gauntlet.html', views.gauntlet),
-    url(r'^login.html', views.login),
+    url(r'^bulletinboard', views.bulletinboard),
+    url(r'^index', views.index),
+    url(r'^challenge', views.challenge),
+    url(r'^detailPublicChallenge&(?P<un>[a-z]+)&(?P<pk>[0-9]+)$', views.detailPublicChallenge),
+    url(r'^detailUnfinish&(?P<un>[a-z]+)&(?P<pk>[0-9]+)$', views.detailUnfinish),
+    url(r'^about', views.about),
+    url(r'^gauntlet', views.gauntlet),
+    url(r'^rank', views.rank),
+    url(r'^videoForChallenge', views.videoForChallenge),
+    url(r'^makeChallenge', views.makeChallenge),
+    #url(r'^readMorePage', views.readMorePage),
+    url(r'^login', views.login),
+    url(r'^login/', TemplateView.as_view(template_name="login.html"),
+                   name='login'),
+    url(r'^error', views.error),
+    url(r'^logout', views.logout),
+    url(r'^register', views.register),
+    url(r'^readMorePage&(?P<un>[a-z]+)&(?P<pk>[0-9]+)$', views.readMorePage),
+    url(r'^join&(?P<un>[a-z]+)&(?P<pk>[0-9]+)$', views.join),
+
 ]

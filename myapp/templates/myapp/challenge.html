@@ -2,17 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Services</title>
+    <title>挑戰</title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no"/>
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/grid.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/challenge.css' %}">
     <link rel="stylesheet" href="{% static 'css/isotope.css' %}"/>
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/jquery-migrate-1.2.1.js' %}"></script>
     <script src="{% static 'js/jquery.equalheights.js' %}"></script>
     <script src="{% static 'js/isotope.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -37,61 +39,30 @@
                 <div class="grid_12">
                     <div class="brand put-left">
                         <h1>
-                            <a href="index.html">
-                                <img src="images/logo.png" alt="Logo"/>
+                            <a href="index">
+                                <img src="{% static 'images/logo.png' %}" alt="Logo"/>
                             </a>
                         </h1>
                     </div>
                     <nav class="nav put-right">
                         <ul class="sf-menu">
-                            <li class="current"><a href="index.html">首頁</a></li>
-                            <li>
-                               <a href="#">挑戰者</a>
+                            <li><a href="index">首頁</a></li>
+                            <li><a href="videoForChallenge">發燒影片</a></li>
+                            <li><a href="bulletinboard">最新挑戰</a></li>
+                            <li><a href="rank">風雲榜</a></li>
+                            {% if request.user.is_authenticated %}
+                            <li class="current"><br><img class="circular--portrait" src="{% static 'images/head.png' %}" >
+                            <h3>{{ request.user.get_username }}</h3>
                                 <ul>
-                                    <li><a href="challenge.html">挑戰</a></li>
-                                    <li><a href="gauntlet.html">戰帖</a></li>
+                                    <li><a href="makeChallenge">建立新挑戰</a></li>
+                                    <li><a href="challenge">挑戰</a></li>
+                                    <li><a href="gauntlet">戰帖</a></li>
+                                    <li><a href="logout">登出</a></li>
                                 </ul>
                             </li>
-                            <li><a href="bulletinboard.html">公告板</a></li>
-                            <li><a href="#">風雲榜</a></li>
-                            <li><a href="#">Login</a>
-                                <ul>
-               <li>
-                  <div class="rows">
-                        <div class="col-md-12">
-                           Login via
-                           <div class="social-buttons">
-                              <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                              <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-                           </div>
-                                   or
-                           <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                 <div class="form-group">
-                                     <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                     <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                                </div>
-                                 <div class="form-group">
-                                     <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                                <div><a href="#" class="remind">Forget the password ?</a></div>
-                                 </div>
-                                 <div class="form-group">
-                                     <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                                 </div>
-                                 <div class="checkbox">
-                                     <label>
-                                   <input type="checkbox"> keep me logged-in
-                                     </label>
-                                 </div>
-                          </form>
-                        </div>
-                        <div class="bottom text-center">
-                           New here ? <a href="#" class="remind">Join Us</a>
-                        </div>
-                   </div>
-               </li>
-               </ul>
-                            </li>
+                            {% else %}   
+                            <li><a id="user-name" href="login">Login</a></li>
+                            {% endif %}
                         </ul>
                     </nav>
                 </div>
@@ -102,122 +73,116 @@
 <!--========================================================
                           CONTENT
 =========================================================-->
-<section id="content"><div class="ic">More Website Templates @ TemplateMonster.com - September08, 2014!</div>
+<section id="content">
     <div class="container">
         <div class="row wrap_11 wrap_20">
             <div class="grid_12">
                 <div class="text_7 color_2">
                     挑戰:
                     <ul id="filters">
-                        <li><a href="#" data-filter="*">Show All</a></li>
-                        <li><a href="#" data-filter="c1">已完成</a></li>
-                        <li><a href="#" data-filter="c2">進行中</a></li>
+                        <li><a href="#" data-filter="myChallenge">我發布的挑戰</a></li>
+                        <li><a href="#" data-filter="finish">已完成</a></li>
+                        <li><a href="#" data-filter="unfinish">進行中</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="bg_1 wrap_17">
+     <div class="bg_1 wrap_17">
         <div class="container">
             <div class="row">
                 <div class="grid_12">
-                    <div class="isotope row">
-                        <div class="element-item grid_4 c1">
+                    <div class="isotope row"><!--div for elements-->
+                    {% if ch %}
+                    {% for c in ch %}
+                        <div class="element-item grid_4 myChallenge">
                             <div class="box_7">
                                 <div class="img-wrap">
-                                    <img src="{% static 'images/index-2_img01.jpg' %}" alt="Image 1"/>
+                                    <img src="{%static 'images/image.png'%}" alt="Image 1"/>
+                                    
                                 </div>
-                                <div class="caption">
-                                    <h3 class="text_2 color_2"><a href="#">Tertomino verto</a></h3>
+                                <br>
+                                <br>
+                                <br>
+                                <h3 class="text_2 color_2"><a href="#">{{ c.title }}</a></h3>
                                     <p class="text_3">
-                                        Horem ipsum dolor sit amettetur ing elit. In mollis erat mattis neque
-                                        cilisis, sit amet <br/>
-                                        ultries wertolio dasererat rutrume. In mollis erat mattis
-                                        neque cilisis, sit amet ultries
+                                        {{ c.detail|truncatechars:15 }}
                                     </p>
-                                    <a class="btn_2" href="#">read more</a></div>
+                                <div class="caption">
+                                        <a class="btn_2" href="login">我要挑戰</a>
+                                        <a class="btn_2" href="detailPublicChallenge&{{ c.username }}&{{ c.urlnum }}">更多資訊</a>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="element-item grid_4 c1">
+                    {% endfor %}
+                    {% endif %}
+                    {% for d in de %}
+                        {% if not d.isFinish %}
+                        <div class="element-item grid_4 unfinish">
                             <div class="box_7">
                                 <div class="img-wrap">
-                                    <img src="{% static 'images/index-2_img02.jpg' %}" alt="Image 2"/>
+                                    <img class="img_filter" src="{%static 'images/challenge.png'%}" alt="Image 1"/>
+                                    <p class="img_text">
+                                        {{ d.title }}
+                                    </p>
                                 </div>
                                 <div class="caption">
-                                    <h3 class="text_2 color_2"><a href="#">Dertomino vertom</a></h3>
+                                    <!--<h3 class="text_2 color_2"><a href="#">Title here</a></h3>-->
+                                    <ul class="post_meta" style="margin:10px">
+                                        <li class="post_meta_admin"><a href="#">{{ d.username }}</a></li>
+                                        <li class="post_meta_date"><a href="#">{{ d.startTime }}</a></li>
+                                        <li class="post_meta_likes"><a href="#">{{ d.mancount }}</a></li>
+                                    </ul>
                                     <p class="text_3">
-                                        Gorem ipsum dolor sit amettetur ing elit. In mollis erat mattis neque
-                                        cilisis, sit amet <br/>
-                                        ultries wertolio dasererat rutrume. In mollis erat mattis
-                                        neque cilisis, sit amet ultrie
+                                        {{ d.detail }}
                                     </p>
-                                    <a class="btn_2" href="#">read more</a></div>
+                                    <a class="btn_2" href="detailUnfinish&{{d.username}}&{{d.urlnumber}}">更多資訊</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="element-item grid_4 c1">
+                        {% else %}
+                        <div class="element-item grid_4 finish">
                             <div class="box_7">
                                 <div class="img-wrap">
-                                    <img src="{% static 'images/index-2_img03.jpg' %}" alt="Image 3"/>
+                                    <img class="img_filter" src={{d.videopic}}  alt="Image 1"/>
+                                    <p class="img_text">
+                                        {{ d.title }}
+                                    </p>
                                 </div>
                                 <div class="caption">
-                                    <h3 class="text_2 color_2"><a href="#">Kertomino vertu</a></h3>
+                                    <ul class="post_meta" style="margin:10px">
+                                        <li class="post_meta_admin"><a href="#">{{ d.username }}</a></li>
+                                        <li class="post_meta_date"><a href="#">{{ d.startTime }}</a></li>
+                                        <li class="post_meta_likes"><a href="#">{{ d.mancount }}</a></li>
+                                    </ul>
+                                    <!--<h3 class="text_2 color_2"><a href="#">Title here</a></h3>-->
                                     <p class="text_3">
-                                        Lorem ipsum dolor sit amettetur ing elit. In mollis erat mattis neque
-                                        cilisis, sit amet <br/>
-                                        ultries wertolio dasererat rutrume. In mollis erat mattis
-                                        neque cilisis, sit amet ultesas
+                                        {{ d.detail }}
                                     </p>
-                                    <a class="btn_2" href="#">read more</a></div>
+                                    <a class="btn_2" href="detailUnfinish&{{d.username}}&{{d.urlnumber}}">更多資訊</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="element-item grid_4 c2">
+                        {% endif %}
+                    {% endfor %}    
+                        <!--<div class="element-item grid_4 c1">
                             <div class="box_7">
                                 <div class="img-wrap">
-                                    <img src="{% static 'images/index-2_img04.jpg' %}" alt="Image 4"/>
-                                </div>
-                                <div class="caption">
-                                    <h3 class="text_2 color_2"><a href="#">Hertomino ertoq</a></h3>
-                                    <p class="text_3">
-                                        Horem ipsum dolor sit amettetur ing elit. In mollis erat mattis neque
-                                        cilisis, sit amet <br/>
-                                        ultries wertolio dasererat rutrume. In mollis erat mattis
-                                        neque cilisis, sit amet ultries
+                                    <img class="img_filter" src="{%static 'images/index-2_img01.jpg'%}" alt="Image 6"/>
+                                    <p class="img_text">
+                                        test Title
                                     </p>
-                                    <a class="btn_2" href="#">read more</a></div>
-                            </div>
-                        </div>
-                        <div class="element-item grid_4 c2">
-                            <div class="box_7">
-                                <div class="img-wrap">
-                                    <img src="{% static 'images/index-2_img05.jpg' %}" alt="Image 5"/>
                                 </div>
-                                <div class="caption">
-                                    <h3 class="text_2 color_2"><a href="#">Tertomino verto</a></h3>
+                                <div class="caption">-->
+                                    <!--<h3 class="text_2 color_2"><a href="#">Nertomino rtoas</a></h3>
                                     <p class="text_3">
-                                        Forem ipsum dolor sit amettetur ing elit. In mollis erat mattis neque
-                                        cilisis, sit amet <br/>
-                                        ultries wertolio dasererat rutrume. In mollis erat mattis
-                                        neque cilisis, sit amet ultries
+                                        Description here6Description here6Description here6Description here6
                                     </p>
-                                    <a class="btn_2" href="#">read more</a></div>
-                            </div>
-                        </div>
-                        <div class="element-item grid_4 c1">
-                            <div class="box_7">
-                                <div class="img-wrap">
-                                    <img src="{% static 'images/index-2_img06.jpg' %}" alt="Image 6"/>
+                                    <a class="btn_2" href="#">read more</a>
                                 </div>
-                                <div class="caption">
-                                    <h3 class="text_2 color_2"><a href="#">Nertomino rtoas</a></h3>
-                                    <p class="text_3">
-                                        Korem ipsum dolor sit amettetur ing elit. In mollis erat mattis neque cilisis,
-                                        sit amet <br/>
-                                        ultries wertolio dasererat rutrume. In mollis erat mattis neque
-                                        cilisis, sit amet ultriede
-                                    </p>
-                                    <a class="btn_2" href="#">read more</a></div>
                             </div>
-                        </div>
+                        </div>end element item-->
                     </div>
                 </div>
             </div>
@@ -225,19 +190,7 @@
     </div>
     <div class="container">
         <div class="row wrap_9 wrap_4 wrap_10">
-            <div class="grid_12">
-                <div class="header_1 wrap_3 color_3">
-                    Get in Touch
-                </div>
-                <div class="box_3">
-                    <ul class="list_1">
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                        <li><a class="fa fa-pinterest" href="#"></a></li>
-                    </ul>
-                </div>
-            </div>
+           
         </div>
     </div>
 </section>
@@ -250,8 +203,8 @@
         <div class="row">
             <div class="grid_12">
                 <p class="info text_4 color_4">
-                    © <span id="copyright-year"></span> | <a href="#">Privacy Policy</a> <br/>
-                    Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
+                   © <span id="copyright-year"></span> | <a href="#">Exit VII</a> <br/>
+                   University of Taipei 
                 </p>
             </div>
         </div>

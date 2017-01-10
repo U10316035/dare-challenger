@@ -1,25 +1,24 @@
-{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>首頁</title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no"/>
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/camera.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/camera.css"/>
+    <link rel="stylesheet" href="css/owl.carousel.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
     
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/jquery-migrate-1.2.1.js' %}"></script>
-    <script src="{% static 'js/jquery.equalheights.js' %}"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
+    <script src="js/jquery.equalheights.js"></script>
     <!--[if (gt IE 9)|!(IE)]><!-->
-    <script src="{% static 'js/jquery.mobile.customized.min.js' %}"></script>
+    <script src="js/jquery.mobile.customized.min.js"></script>
     <!--<![endif]-->
-    <script src="{% static 'js/camera.js' %}"></script>
-    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <script src="js/camera.js"></script>
+    <script src="js/owl.carousel.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -44,31 +43,25 @@
                 <div class="grid_12">
                     <div class="brand put-left">
                         <h1>
-                            <a href="index">
-                                <img src="{% static 'images/logo.png' %}" alt="Logo"/>
+                            <a href="index.html">
+                                <img src="images/logo.png" alt="Logo"/>
                             </a>
                         </h1>
                     </div>
                     <nav class="nav put-right">
                         <ul class="sf-menu">
-                            <li class="current"><a href="index">首頁</a></li>
-                            <li><a href="videoForChallenge">發燒影片</a></li>
-                            <li><a href="bulletinboard">最新挑戰</a></li>
-                            <li><a href="rank">風雲榜</a></li>
-
-                            {% if request.user.is_authenticated %}
-                            <li class="current"><br><img class="circular--portrait" src="{% static 'images/head.png' %}" >
-                            <h3>{{ request.user }}</h3>
+                            <li><a href="index.html">首頁</a></li>
+                            <li><a href="videoForChallenge.html">發燒影片</a></li>
+                            <li><a href="bulletinboard.html">最新挑戰</a></li>
+                            <li><a href="rank.html">風雲榜</a></li>
+                            <li class="current"><br><img class="circular--portrait" src="images/head.png" />
                                 <ul>
-                                    <li><a href="makeChallenge">建立新挑戰</a></li>
-                                    <li><a href="challenge">挑戰</a></li>
-                                    <li><a href="gauntlet">戰帖</a></li>
-                                    <li><a href="logout">登出</a></li>
+                                    <li><a href="makechallenge.html">建立新挑戰</a></li>
+                                    <li><a href="challenge.html">挑戰</a></li>
+                                    <li><a href="gauntlet.html">戰帖</a></li>
+                                    <li><a href="#">登出</a></li>
                                 </ul>
                             </li>
-                            {% else %}   
-                            <li><a id="user-name" href="login">Login</a></li>
-                            {% endif %}
                         </ul>
                     </nav>
                 </div>
@@ -79,33 +72,49 @@
 <!--========================================================
                           CONTENT
 =========================================================-->
+<!--========================================================
+                          CONTENT
+=========================================================-->
 <section id="content">
 <div class="container">
 <br>
 </div>
 <div class="slider">
       <div class="arrows">
-        <a class="previous" href="#"><img src="{% static 'images/arrow1.png' %}"></a>
-        <a class="next" href="#"><img src="{% static 'images/arrow2.png' %}"></a>
+        <a class="previous" href="#">&#xf053;</a>
+        <a class="next" href="#">&#xf054;</a>
       </div>
       <div class="slides">
             <div class="slide active white" >
-                <h2>{{ cc.title }}</h2>
-                <p>{{ cc.detail }}</p>
-                <a href="detailPublicChallenge&{{ cc.username }}&{{ cc.urlnum }}">更多資訊</a>
+                <h2>30天歌單</h2>
+                <p>玩法很簡單，趣味十足<BR>一個月內每天依照題目要求分享一首歌在自己的臉書或其他社交網站上</p>
+                <a target="_blank" href="#">更多資訊</a>
             </div>
-
-            {% for c in ch %}
             <div class="slide white" >
-                <h2>{{ c.title }}</h2>
-                <p>{{ c.detail }}</p>
-                <a  href="detailPublicChallenge&{{ c.username }}&{{ c.urlnum }}">更多資訊</a>
+                <h2>用左手化妝</h2>
+                <p>Nobody wants to miss out on important events, but sometimes, it’s hard to find the time in another city. Clocks+ lets you set alarms for your favorite cities in a simple and intuitive way.</p>
+                <a target="_blank" href="#">更多資訊</a>
             </div>
-            {% endfor %}
+            <div class="slide white" >
+                <h2>背包撞擊</h2>
+                <p>Clocks+ wouldn’t be a modern app without Widgets. Your favorite cities appear in the Today View with just a swipe down, for quick glancing, Did we mention that they look awesome, too?</p>
+                <a target="_blank" href="#">更多資訊</a>
+            </div>
+            <div class="slide white" >
+                <h2>假人挑戰</h2>
+                <p>Clocks+ wouldn’t be a modern app without Widgets. Your favorite cities appear in the Today View with just a swipe down, for quick glancing, Did we mention that they look awesome, too?</p>
+                <a target="_blank" href="#">更多資訊</a>
+            </div>
+            <div class="slide white" >
+                <h2>PPAP</h2>
+                <p>Clocks+ wouldn’t be a modern app without Widgets. Your favorite cities appear in the Today View with just a swipe down, for quick glancing, Did we mention that they look awesome, too?</p>
+                <a target="_blank" href="#">更多資訊</a>
+            </div>
         </div>
         <div class="bullets">
         </div>
 </div>
+
 
 <!--Login-->
 <div id="openModal" class="modalDialog">
@@ -124,6 +133,7 @@
         </div>
     </div>
 </div>
+
 </section>
 </div>
 <!--========================================================
@@ -142,7 +152,7 @@
     </div>
 </footer>
 
-<script src="{% static 'js/script.js' %}"></script>
+<script src="js/script.js"></script>
 <script>
 var $slider = $(".slider"), $bullets = $(".bullets");
         function calculateHeight(){
@@ -209,5 +219,6 @@ var $slider = $(".slider"), $bullets = $(".bullets");
         addBullets();
         calculateHeight();
 </script>  
+
 </body>
 </html>

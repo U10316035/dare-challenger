@@ -46,8 +46,11 @@ img {
 * {
   -webkit-text-size-adjust: none;
 }
-/*====  ChainRule's modified  =====*/
+/*====  img for challenge modified  =====*/
+
 .img-wrap{
+  width:370px;
+  height: 180px;
   opacity: 0.7;
 }
 .img-wrap .img_text{
@@ -62,7 +65,7 @@ img {
   position: relative;
   max-width: 580px;
   border-radius: 0 2px 2px 0;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.6);
   padding: 5px 10px 10px 10px;
   -webkit-transition: background-color 0.2s ease-out; /* Saf3.2+, Chrome */
   -moz-transition: background-color 0.2s ease-out; /* Firefox 4+ */
@@ -74,8 +77,14 @@ img {
 .img-wrap:hover .img_text {
   background-color: #129894;
 }
+.img_text{
+  margin-top: 35px;
+}
+
 .img_filter{
   opacity: 0.8;
+  width: 320px;
+  height: 180px;
 }
 .img-wrap:hover .img_filter{
   filter: grayscale(80%);
@@ -86,8 +95,10 @@ img {
 }
 .caption p{
   width: 300px;
+  height: 100px;
+  text-align: center;
   overflow:hidden;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   text-overflow: ellipsis;
 }
 
@@ -155,7 +166,7 @@ img {
 }
 /*============  Backgrounds  =============*/
 .bg_1 {
-  background: #ffffff;
+  background: #fFFFFF;
 }
 /*============  Floats  =============*/
 .put-left {
@@ -479,13 +490,13 @@ img {
   background: #249f9c;
   text-decoration: none;
 }
-
 .btn_2 {
   display: inline-block;
   padding: 4px 20px 3px;
   font: 400 18px/30px 'FontAwesome', sans-serif;
   color: #413d3d;
   background: #f1f045;
+  margin-top:10px;
 }
 .btn_2:hover {
   color: #ffffff;
@@ -720,23 +731,27 @@ img {
   }
 }
 .box_7 {
-  padding-bottom: 117px;
+  padding-bottom: 40px;
+  text-align: center;
 }
 .box_7 .img-wrap {
   text-align: center;
 }
 .box_7 .caption {
-  padding-top: 35px;
+  padding-top: 0px;
+  text-align: center;
 }
 .box_7 .caption .text_2 + .text_3 {
-  padding-top: 24px;
+  padding-top: 0px;
+  text-align: center;
 }
 .box_7 .caption .text_3 + .btn_2 {
-  margin-top: 40px;
+  margin-top:10px;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .box_7 {
-    padding-bottom: 50px;
+    padding-bottom: 40px;
   }
 }
 /*============  Lists  =============*/
@@ -1211,24 +1226,10 @@ a[data-type='lightbox']:hover img {
   height: 40px;
   overflow: hidden;
   border-radius: 50%;
-  margin-top: -19px;
 }
 
 .circular--portrait img {
   width: 100%;
   height: auto;
-}
-
-
-/*videoForChallenge.html*/
-.video{
-  padding-bottom: 5px;
-}
-
-.box_inner{
-  overflow: hidden;
-  white-space: nowrap; /* Don't forget this one */
-  text-overflow: ellipsis;
-  padding-bottom: 15px;
 }
 

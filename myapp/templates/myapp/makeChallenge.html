@@ -1,0 +1,142 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>make your challenge</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{% static 'css/makeChallenge.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/camera.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
+    
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-1.2.1.js' %}"></script>
+    <script src="{% static 'js/jquery.equalheights.js' %}"></script>
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <script src="{% static 'js/jquery.mobile.customized.min.js' %}"></script>
+    <!--<![endif]-->
+    <script src="{% static 'js/camera.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <!--[if lt IE 9]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"
+                 height="42" width="820"
+                 alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
+        </a>
+    </div>
+    <script src="js/html5shiv.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+    <![endif]-->
+</head>
+<body>
+       <form class="form-make-cha" method="POST">
+              {% csrf_token %}
+              {{ form }}
+            <h2 class="form-make-cha-heading"><b>建立新挑戰</b></h2> 
+            <div class="login-wrap">
+              <label>挑戰名稱 : </label>
+              <input name="Challenge_title" type="text" class="form-control" placeholder="命名你的挑戰" autofocus>
+               <br>
+               <label>說明挑戰的細節 : </label>
+               <textarea name="Challenge_detail" type="text" class="form-control" id="form-textarea" placeholder="寫下有關挑戰的規則....."></textarea>
+               <br>
+               <label>選擇挑戰的權限 :</label>
+                <select name="permission" class="form-control" id="form-select-to-whom">
+                  <option value="public"><b>公開</b></option>
+                  <option value="private">私人</option>
+                  <option value="friend">對朋友下戰帖</option>
+               </select>
+               <br>
+
+              <div class="input-daterange input-group" id="datepicker">
+                  <label>挑戰的期限 :(天)</label>
+                  <input type="text" class="input-sm form-control" name="endtime" placeholder="天數"/>
+              </div>
+              <br><br>
+              <div id="buttongrp">
+               <button class="btn btn-theme btn-block" href="#" type="submit"><b>送出挑戰</b></button>
+              </div>
+                <hr>
+            </div>
+       </form>
+       <!-- <form class="form-make-cha" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <h2 class="form-make-cha-heading">Make your own Challenge</h2>
+            <div class="login-wrap">
+              <label>Name your challenge title : </label>
+              <input name="Challenge_title" type="text" class="form-control" placeholder="Challenge Title" autofocus>
+               <br>
+               <label>Describe your challenge details : </label>
+               <textarea name="Challenge_detail" type="text" class="form-control" id="form-textarea" placeholder="Detail your challenge here"></textarea>
+               <br>
+               <label>Select the target for this challenge to send to </label>
+                <select name="permission" class="form-control" id="form-select-to-whom">
+                  <option value="public">public</option>
+                  <option value="to friend">to friend</option>
+                  <option value="private">private</option>
+               </select>
+               <br>
+
+              <div class="input-daterange input-group" id="datepicker">
+                  <input type="text" class="input-sm form-control" name="start" placeholder="mm/dd/yyyy"/>
+                  <span class="input-group-addon">to</span>
+                  <input type="text" class="input-sm form-control" name="end" placeholder="mm/dd/yyyy"/>
+              </div>
+              <br><br>
+               <button class="btn btn-theme btn-block" href="login.html" type="submit"><i class="fa fa-lock"></i>Send challenge</button>
+                <hr>
+            </div>
+       </form> -->
+</body>
+<script src="{% static 'js/script.js'%}"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+</html>
+
+
+<!-- start here
+                  <div class="bootstrap-iso">
+                  <div class="container-fluid">
+                    <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <form class="form-horizontal" method="post">
+                        <div class="form-group ">
+                          <label class="control-label col-sm-2 requiredField" for="date">Date</label>
+                          <div class="col-sm-10">
+                            <div class="input-group">
+                              <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                              </div>
+                              <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group"></div>
+                      </form>
+                    </div>
+                    </div>
+                  </div>
+                  </div>
+               end here-->
+
+                  <!--<div class="row">
+                    <div class='col-sm-6'>
+                      <div class="form-group">
+                       <div class='input-group date' id='datetimepicker1'>
+                        <input type='date' class="form-control"/>
+                       <span class="input-group-addon">
+                         <span class="glyphicon glyphicon-calendar"></span>
+                       </span>
+                       </div>
+                      </div>
+                    </div>
+                  <script type="text/javascript">
+                    $(function () {
+                     $('#datetimepicker1').datetimepicker();
+                    });
+                  </script>
+               </div>-->

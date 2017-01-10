@@ -1,0 +1,103 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>登入</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/camera.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-1.2.1.js' %}"></script>
+    <script src="{% static 'js/jquery.equalheights.js' %}"></script>
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <script src="{% static 'js/jquery.mobile.customized.min.js' %}"></script>
+    <!--<![endif]-->
+    <script src="{% static 'js/camera.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <!--[if lt IE 9]> 
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"
+                 height="42" width="820"
+                 alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
+        </a>
+    </div>
+    <script src="js/html5shiv.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+    <![endif]-->
+</head>
+<body>
+
+<form class="form-login" method="POST">
+
+<h2 class="form-login-heading">註冊</h2>
+            <div class="login-wrap">
+                  <!--<form action="" ></form>-->
+                {% csrf_token %}
+                {{ form }}
+                    <!--<input name="username" id="username" type="text" class="form-control" placeholder="User Name" autofocus>
+                    <br>
+                    <input type="password" name="pass" id="password" class="form-control" placeholder="Password">-->
+                    <p>使用者名稱(限英文)</p>
+                    <input type="text" name="id" placeholder="User Name" autocomplete="off" class="form-control placeholder-no-fix">
+                    <br>
+                    <p>Email</p>
+                    <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                    <br>
+                    <p>密碼</p>
+                    <input type="password" name="password" placeholder="password" autocomplete="off" class="form-control placeholder-no-fix">
+                    
+                    <button class="btn btn-theme btn-block" href="" type="submit"><i class="fa fa-lock"></i> 建立帳戶</button>
+                    
+                     
+            </div>
+
+<!--<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myRegister" class="modal fade">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                  <h4 class="modal-title">Registration</h4>
+                              </div>
+                              <div class="modal-body">
+                              <form method="post">
+                              {{uform.as_p}}
+                                  <p>ID</p>
+                                  <input type="text" name="id" placeholder="User Name" autocomplete="off" class="form-control placeholder-no-fix">
+                                  <br>
+                                  <p>Email</p>
+                                  <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                                  <br>
+                                  <p>Password</p>
+                                  <input type="text" name="password" placeholder="password" autocomplete="off" class="form-control placeholder-no-fix">
+        
+                              </div>
+                              <div class="modal-footer">
+                                  <button data-dismiss="" class="btn btn-default" name="no" type="button">Cancel</button>
+                                  <button class="btn btn-theme" type="submit" name="ok" href="register">Submit</button>
+                              </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>-->
+</form>
+            {% if error1 %}
+              <p>* 資料不足，請重新輸入</p>
+            {% endif %}     
+            
+            {% if error2 %}
+              <p>* 此郵箱已註冊，或輸入不正確</p>
+            {% endif %}
+
+            {% if error3 %}
+              <p>* 使用者名稱已存在</p>
+            {% endif %}
+</body>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</html>
